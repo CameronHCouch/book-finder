@@ -1,18 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import SearchForm from './components/SearchForm'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to Find-A-Book, the best app for discovering books on the web!
-        </p>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <p>
+            Welcome to Find-A-Book, the best app for discovering books on the web!
+          </p>
+        </header>
+        <SearchForm />
+      </div>
+    );
+  }
 }
 
 export default App;
