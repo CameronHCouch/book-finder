@@ -1,43 +1,26 @@
 import React, { Component } from 'react';
-import { googleBooksAPIUtil } from '../util/google_books_api_util';
 import './SearchForm.css';
 
 class SearchForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      query: '',
-      maxResults: 10,
-      familyFriendly: true,
-      books: [],
-    };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleFamilyFriendly = this.toggleFamilyFriendly.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.props.onChange(e);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     // current issue: the search is not immediately updating when new text is added
-    if (this.state.query) {
-      this.setState( { books: [] });
-      googleBooksAPIUtil(this.state.query, this.state.maxResults, this.state.familyFriendly)
-        .then(result => {
-          console.log(result);
-          this.setState({ books: result })
-        })
-      this.setState( { query: "" });
-    }
-    // else raise error
+    this.props.onSubmit(e)
   }
 
   toggleFamilyFriendly() {
-    this.setState({ familyFriendly: !this.state.familyFriendly });
+    this.props.toggleFamilyFriendly();
   }
 
   render() {
@@ -45,7 +28,7 @@ class SearchForm extends Component {
       <div className="SearchForm-wrapper">
         <form onSubmit= { this.handleSubmit }>
           <label htmlFor="query">Type your book search here:</label>
-          <input type="text" value={ this.state.query } onChange= { this.handleChange } name="query" id="book-search"></input>
+          <input type="text" value={ this.props.query } onChange= { this.handleChange } name="query" id="book-search"></input>
           <label htmlFor="maxResults">Max Num Results</label>
           <select name="maxResults" onChange = { this.handleChange }>
             <option value="10" defaultValue>10</option>

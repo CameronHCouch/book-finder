@@ -45,7 +45,14 @@ class FilterableBookTable extends Component {
   render() {
     return (
       <div className="FilterableBookTable">
-        <SearchForm />
+        <SearchForm
+          query= { this.state.query }
+          maxResults= { this.state.maxResults }
+          familyFriendly= { this.state.familyFriendly }
+          onChange={ this.handleChange }
+          onSubmit={ this.handleSubmit }
+          toggleFamilyFriendly={ this.toggleFamilyFriendly } 
+          />
         <BookList />
       </div>
     );
