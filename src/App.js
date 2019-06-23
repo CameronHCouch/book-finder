@@ -1,16 +1,8 @@
-import React, { Component } from 'react';
-import SearchForm from './components/SearchForm'
+import React from 'react';
+import FilterableBookTable from './components/FilterableBookTable'
 import './App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: [],
-    }
-  }
-
-  render() {
+function App() {
     return (
       <div className="App">
         <header className="App-header">
@@ -18,10 +10,9 @@ class App extends Component {
             Welcome to Find-A-Book, the best app for discovering books on the web!
           </p>
         </header>
-        <SearchForm />
+        <FilterableBookTable />
       </div>
     );
-  }
 }
 
 export default App;
