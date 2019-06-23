@@ -22,6 +22,7 @@ class SearchForm extends Component {
     e.preventDefault();
     if (this.state.query) {
       this.setState( { books: [] });
+      googleBooksAPIUtil(this.state.query).then(res => console.log(res))
       this.setState({ books: googleBooksAPIUtil(this.state.query) });
     }
     // else raise error
