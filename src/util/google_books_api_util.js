@@ -1,24 +1,28 @@
 import { secretAPIKey } from './secretAPIKey';
 
-export const googleBooksAPIUtil = query => {
-  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${secretAPIKey}`)
+export const googleBooksAPIUtil = (query, maxResults, familyFriendly) => {
+  console.log(query, familyFriendly, familyFriendly ? "not-mature" : "mature" );
+  return fetch(`https://www.googleapis.com/books/v1/volumes?` +
+                `q=${query}&` +
+                `maxResults=${maxResults}&` +
+                `maxAllowedMaturityRating=${familyFriendly ? "not-mature" : "mature"}&` +
+                `key=${secretAPIKey}`
+              )
               .then(res => res.json())
               .then(({items}) => {
                 return items.map(({ volumeInfo }) => ({
-                    authors: volumeInfo.authors,
-                    title: volumeInfo.title, 
-                    publisher: volumeInfo.publisher, 
-                    thumbnail: volumeInfo.imageLinks.thumbnail, 
-                    infoLink: volumeInfo.infoLink 
+                    authors: fillMissingData('Author', volumeInfo.authors),
+                    title: fillMissingData('Title', volumeInfo.title), 
+                    publisher: fillMissingData('Publisher', volumeInfo.publisher), 
+                    thumbnail: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : 'Preview Image', 
+                    infoLink: fillMissingData('Link', volumeInfo.infoLink)
                   })
                 )
               })
-  // return results.items.map(({ volumeInfo }) => { 
-  //   { volumeInfo.authors, 
-  //     volumeInfo.title, 
-  //     volumeInfo.publisher, 
-  //     volumeInfo.imageLinks.thumbnail, 
-  //     volumeInfo.infoLink 
-  //   }
-  // })
+}
+
+  // need error handling for missing data! let's create a helper function for this
+
+function fillMissingData(field, value) {
+  return value === undefined ? value = `${field} information is unavailable` : value;
 }

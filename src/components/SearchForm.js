@@ -7,10 +7,10 @@ class SearchForm extends Component {
     super(props);
     this.state = {
       query: '',
-      queryLength: 10,
+      maxResults: 10,
       familyFriendly: true,
       books: [],
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,17 +23,21 @@ class SearchForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state)
+    // current issue: the search is not immediately updating when new text is added
     if (this.state.query) {
       this.setState( { books: [] });
-      googleBooksAPIUtil(this.state.query).then(res => console.log(res))
-      this.setState({ books: googleBooksAPIUtil(this.state.query) });
+      googleBooksAPIUtil(this.state.query, this.state.maxResults, this.state.familyFriendly)
+        .then(result => {
+          console.log(result);
+          this.setState({ books: result })
+        })
+      this.setState( { query: "" });
     }
     // else raise error
   }
 
   toggleFamilyFriendly() {
-    this.setState({ familyFriendly: !this.state.familyFriendly })
+    this.setState({ familyFriendly: !this.state.familyFriendly });
   }
 
   render() {
@@ -42,8 +46,8 @@ class SearchForm extends Component {
         <form onSubmit= { this.handleSubmit }>
           <label htmlFor="query">Type your book search here:</label>
           <input type="text" value={ this.state.query } onChange= { this.handleChange } name="query" id="book-search"></input>
-          <label htmlFor="queryLength">Max Num Results</label>
-          <select name="queryLength" onChange = { this.handleChange }>
+          <label htmlFor="maxResults">Max Num Results</label>
+          <select name="maxResults" onChange = { this.handleChange }>
             <option value="10" defaultValue>10</option>
             <option value="15">15</option>
             <option value="20">20</option>
