@@ -15,12 +15,16 @@ class SearchForm extends Component {
   }
 
   handleChange(e) {
-    this.setState( { query: e.target.value });
+    this.setState({ query: e.target.value });
   }
 
   handleSubmit(e) {
-    console.log(e)
-    googleBooksAPIUtil(this.state.query);
+    e.preventDefault();
+    if (this.state.query) {
+      this.setState( { books: [] });
+      this.setState({ books: googleBooksAPIUtil(this.state.query) });
+    }
+    // else raise error
   }
 
   render() {
@@ -28,8 +32,8 @@ class SearchForm extends Component {
       <div className="SearchForm-wrapper">
         <form onSubmit= { this.handleSubmit }>
           <label htmlFor="book-search">Type your book search here:</label>
-          <input type="text" value={ this.state.query } onChange= { this.handleChange } name="book-search"></input>
-          <input type="submit" value="Search"></input>
+          <input type="text" value={ this.state.query } onChange= { this.handleChange } name="book-search" id="book-search"></input>
+          <input type="submit" value="Search" id="submit"></input>
         </form>
       </div>
     );
