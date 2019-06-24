@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { googleBooksAPIUtil } from '../util/google_books_api_util';
 import BookList from './BookList';
 import SearchForm from './SearchForm';
+import Loading from './Loading';
 import './FilterableBookTable.css';
 
 class FilterableBookTable extends Component {
@@ -11,6 +12,7 @@ class FilterableBookTable extends Component {
       query: '',
       maxResults: 10,
       familyFriendly: true,
+      loading: false,
       books: [],
     };
 
@@ -27,19 +29,24 @@ class FilterableBookTable extends Component {
     e.preventDefault();
     // current issue: the search is not immediately updating when new text is added
     if (this.state.query) {
-      this.setState( { books: [] });
+      this.setState( { books: [], loading: true });
       googleBooksAPIUtil(this.state.query, this.state.maxResults, this.state.familyFriendly)
         .then(result => {
           console.log(result);
-          this.setState({ books: result })
-        })
-      this.setState( { query: "" });
+          this.setState({ books: result, loading: false, query: "" })
+        });
     }
     // else raise error
   }
 
   toggleFamilyFriendly() {
     this.setState({ familyFriendly: !this.state.familyFriendly });
+  }
+
+  renderLoading() {
+    if (this.state.loading === true) {
+      return <Loading />
+    }
   }
 
   render() {
@@ -53,6 +60,7 @@ class FilterableBookTable extends Component {
           onSubmit={ this.handleSubmit }
           toggleFamilyFriendly={ this.toggleFamilyFriendly } 
           />
+        { this.renderLoading() }
         <BookList />
       </div>
     );
