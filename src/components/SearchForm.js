@@ -15,7 +15,6 @@ class SearchForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // current issue: the search is not immediately updating when new text is added
     this.props.onSubmit(e)
   }
 
