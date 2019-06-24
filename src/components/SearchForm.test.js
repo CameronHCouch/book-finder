@@ -17,7 +17,7 @@ describe('SearchForm', () => {
   it('updates SearchForm\'s "query" state when user types text in input', () => {
     expect(wrapper.state().query).toEqual('');
 
-    wrapper.find('#book-search').simulate('change', {
+    wrapper.find('#bookSearch').simulate('change', {
       target: { value: 'Cloud Atlas'}
     });
 

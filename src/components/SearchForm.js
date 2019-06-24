@@ -27,20 +27,38 @@ class SearchForm extends Component {
     return (
       <div className="SearchForm-wrapper">
         <form onSubmit= { this.handleSubmit }>
-          <label htmlFor="query">Type your book search here:</label>
-          <input type="text" value={ this.props.query } onChange= { this.handleChange } name="query" id="book-search"></input>
-          <label htmlFor="maxResults">Max Num Results</label>
-          <select name="maxResults" onChange = { this.handleChange }>
-            <option value="10" defaultValue>10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="30">30</option>
-            <option value="35">35</option>
-            <option value="40">40</option>
-          </select>
-          <label htmlFor="familyFriendly">Allow mature results?</label>
-          <input type="checkbox" onChange= { this.toggleFamilyFriendly } name="familyFriendly" id="familyFriendly"></input>
+          <label htmlFor="query" className="formHeader">Search for books below:</label>
+          <input 
+            type="text" 
+            value={ this.props.query } 
+            onChange= { this.handleChange } 
+            name="query" 
+            id="bookSearch" 
+            placeholder="Ex. 'Harry Potter' or 'Douglas Adams'">
+          </input>
+          <div className="formOptions">
+            <label htmlFor="maxResults">
+              Max Num Results
+              <select name="maxResults" onChange = { this.handleChange }>
+                <option value="10" defaultValue>10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                <option value="35">35</option>
+                <option value="40">40</option>
+              </select>
+            </label>
+            <label htmlFor="familyFriendly">
+              Allow mature results?
+              <input 
+                type="checkbox" 
+                onChange= { this.toggleFamilyFriendly } 
+                name="familyFriendly" 
+                id="familyFriendly">
+              </input>
+            </label>
+          </div>
           <input type="submit" value="Search" id="submit"></input>
         </form>
       </div>

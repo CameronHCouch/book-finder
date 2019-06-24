@@ -27,7 +27,6 @@ class FilterableBookTable extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // current issue: the search is not immediately updating when new text is added
     if (this.state.query) {
       this.setState( { books: [], loading: true });
       googleBooksAPIUtil(this.state.query, this.state.maxResults, this.state.familyFriendly)

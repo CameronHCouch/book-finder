@@ -1,4 +1,39 @@
-/* p {
-  color: white;
-  font-size: 16px;
-} */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 60vmin;
+  margin: auto;
+  color: #17191e;
+}
+
+.formHeader{
+  font-size: 26px;
+  margin: 10px 0px;
+}
+
+#bookSearch{
+  height: 10vh;
+  font-size: 26px;
+  text-align: center;
+}
+
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+}
+/* TODO: Format dropdown menu */
+input[type=submit] {
+  flex: initial;
+  align-self: center;
+  width: 100px;
+  height: 40px;
+  border: 1px solid #282c34;
+  border-radius: 3px;
+  background-color: #282c34;
+  color: #f0f2f4;
+  font-size: 20px;
+}
+
+input[type=submit]:active{
+  background-color: #093b9f;
+} 
