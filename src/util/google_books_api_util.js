@@ -10,19 +10,17 @@ export const googleBooksAPIUtil = (query, maxResults, familyFriendly) => {
               )
               .then(res => res.json())
               .then(({items}) => {
-                return items.map(({ volumeInfo }) => ({
-                    authors: fillMissingData('Author', volumeInfo.authors),
-                    title: fillMissingData('Title', volumeInfo.title), 
-                    publisher: fillMissingData('Publisher', volumeInfo.publisher), 
-                    thumbnail: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : 'Preview Image', 
-                    infoLink: fillMissingData('Link', volumeInfo.infoLink)
-                  })
-                )
+                  return items && items.map(({ volumeInfo }) => ({
+                      authors: fillMissingData('Author', volumeInfo.authors),
+                      title: fillMissingData('Title', volumeInfo.title), 
+                      publisher: fillMissingData('Publisher', volumeInfo.publisher), 
+                      thumbnail: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : 'Preview Image', 
+                      infoLink: fillMissingData('Link', volumeInfo.infoLink)
+                    })
+                  )
               })
 }
 
-  // need error handling for missing data! let's create a helper function for this
-
 function fillMissingData(field, value) {
-  return value === undefined ? value = `${field} information is unavailable` : value;
+  return value === undefined ? value = `${field} information unavailable` : value;
 }

@@ -3,6 +3,7 @@ import { googleBooksAPIUtil } from '../util/google_books_api_util';
 import BookList from './BookList';
 import SearchForm from './SearchForm';
 import Loading from './Loading';
+import Error from './Error';
 import './FilterableBookTable.css';
 
 class FilterableBookTable extends Component {
@@ -14,10 +15,12 @@ class FilterableBookTable extends Component {
       familyFriendly: true,
       loading: false,
       books: [],
+      error: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.processAPIResult = this.processAPIResult.bind(this);
     this.toggleFamilyFriendly = this.toggleFamilyFriendly.bind(this);
   }
 
@@ -28,14 +31,22 @@ class FilterableBookTable extends Component {
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.query) {
-      this.setState( { books: [], loading: true });
+      this.setState( { books: [], loading: true, error: false });
       googleBooksAPIUtil(this.state.query, this.state.maxResults, this.state.familyFriendly)
         .then(result => {
-          console.log(result);
-          this.setState({ books: result, loading: false })
+          this.processAPIResult(result);
         });
+    } else {
+      this.setState( {error: '📚 Your search must be at least one character long 📚'})
     }
-    // else raise error
+  }
+
+  processAPIResult(result) {
+    if (result) {
+      this.setState({ books: result, loading: false});
+    } else {
+      this.setState({ error: 'No results found for this search 😞', loading: false })
+    }
   }
 
   toggleFamilyFriendly() {
@@ -45,6 +56,12 @@ class FilterableBookTable extends Component {
   renderLoading() {
     if (this.state.loading === true) {
       return <Loading />
+    }
+  }
+
+  renderError() {
+    if (this.state.error) {
+      return <Error errorMessage= { this.state.error } />
     }
   }
 
@@ -60,6 +77,7 @@ class FilterableBookTable extends Component {
           toggleFamilyFriendly={ this.toggleFamilyFriendly } 
           />
         { this.renderLoading() }
+        { this.renderError() }
         <BookList books = { this.state.books } />
       </div>
     );
