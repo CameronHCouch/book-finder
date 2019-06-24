@@ -32,7 +32,7 @@ class FilterableBookTable extends Component {
       googleBooksAPIUtil(this.state.query, this.state.maxResults, this.state.familyFriendly)
         .then(result => {
           console.log(result);
-          this.setState({ books: result, loading: false, query: "" })
+          this.setState({ books: result, loading: false })
         });
     }
     // else raise error
@@ -60,7 +60,7 @@ class FilterableBookTable extends Component {
           toggleFamilyFriendly={ this.toggleFamilyFriendly } 
           />
         { this.renderLoading() }
-        <BookList />
+        <BookList books = { this.state.books } />
       </div>
     );
   }
