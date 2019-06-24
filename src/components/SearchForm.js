@@ -26,7 +26,7 @@ class SearchForm extends Component {
     return (
       <div className="SearchForm-wrapper">
         <form onSubmit= { this.handleSubmit }>
-          <label htmlFor="query" className="formHeader">Search for books below:</label>
+          <label htmlFor="query" className="formHeader">Search for books:</label>
           <input 
             type="text" 
             value={ this.props.query } 
