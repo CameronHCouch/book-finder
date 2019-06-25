@@ -28,6 +28,13 @@ input[type=text] {
   font-size: calc(10px + 1vmin);
 }
 
+.formOptions label {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 select {
   background-color: #282c34;
   color: white;

@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import App from './App';
+import Loading from './Loading';
 
-describe('App', () => {
+describe('Loading', () => {
   it('successfully renders shallowly', () => {
-    shallow(<App />);
+    shallow(<Loading />);
   })
   
   it('renders without crashing', () => {
-    mount(<App />);
+    mount(<Loading />);
   });
 })
 

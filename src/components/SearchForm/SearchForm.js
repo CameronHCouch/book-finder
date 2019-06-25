@@ -25,14 +25,14 @@ class SearchForm extends Component {
   render() {
     return (
       <div className='SearchForm-wrapper'>
-        <form onSubmit= { this.handleSubmit } autocomplete='off'>
+        <form onSubmit= { this.handleSubmit } autoComplete='off'>
           <label htmlFor='query' className='formHeader'>Search for books:</label>
           <input 
             type='text' 
             value={ this.props.query } 
             onChange= { this.handleChange } 
             onFocus = { (e) => e.target.placeholder = '' }
-            onBlur = { (e) => e.target.placeholder = "Ex. 'Harry Potter' or 'Douglas Adams'"}
+            onBlur = { (e) => e.target.placeholder = "Ex. 'Harry Potter' or 'Douglas Adams'" }
             name='query' 
             id='bookSearch' 
             placeholder="Ex. 'Harry Potter' or 'Douglas Adams'">
