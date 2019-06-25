@@ -5,9 +5,10 @@ export const googleBooksAPIUtil = (query, maxResults, familyFriendly) => {
                 `q=${ query }&` +
                 `maxResults=${ maxResults }&` +
                 `maxAllowedMaturityRating=${ familyFriendly ? "not-mature" : "mature" }&` +
+                `orderBy=relevance&` +
                 `key=${ process.env.REACT_APP_SECRET_CODE }`
               )
-              .then(res => res.json())
+              .then(res => handleErrors(res))
               .then(({items}) => {
                   return items && items.map(({ volumeInfo }) => ({
                       authors: fillMissingData('Author', volumeInfo.authors),
@@ -18,8 +19,16 @@ export const googleBooksAPIUtil = (query, maxResults, familyFriendly) => {
                     })
                   )
               })
+              .catch(error => error)
 }
 
 function fillMissingData(field, value) {
   return value === undefined ? value = `${field} information unavailable` : value;
+}
+
+function handleErrors(response) {
+  if (!response.ok) {
+    throw response.status;
+  }
+  return response.json();
 }

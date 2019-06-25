@@ -31,6 +31,8 @@ class SearchForm extends Component {
             type="text" 
             value={ this.props.query } 
             onChange= { this.handleChange } 
+            onFocus = { (e) => e.target.placeholder = "" }
+            onBlur = { (e) => e.target.placeholder = "Ex. 'Harry Potter' or 'Douglas Adams'"}
             name="query" 
             id="bookSearch" 
             placeholder="Ex. 'Harry Potter' or 'Douglas Adams'">

@@ -12,8 +12,8 @@ form {
 }
 
 #bookSearch{
-  height: 10vh;
-  font-size: 26px;
+  height: 8vh;
+  font-size: calc(12px + 1vmin);
   text-align: center;
 }
 

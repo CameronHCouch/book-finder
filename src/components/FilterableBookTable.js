@@ -37,15 +37,20 @@ class FilterableBookTable extends Component {
           this.processAPIResult(result);
         });
     } else {
-      this.setState( {error: '📚 Your search must be at least one character long 📚'})
+      this.setState( {error: '📚 Your search must be at least one character long 📚'});
     }
   }
 
   processAPIResult(result) {
-    if (result) {
-      this.setState({ books: result, loading: false});
+    const errorRegex = new RegExp('5..');
+    this.setState( { loading: false });
+
+    if (result && !errorRegex.test(result)) {
+      this.setState({ books: result });
+    } else if (result && errorRegex.test(result)) {
+      this.setState({ error: 'The server could not be reached! 😲' });
     } else {
-      this.setState({ error: 'No results found for this search 😞', loading: false })
+      this.setState({ error: 'No results found for this search 😞' });
     }
   }
 
