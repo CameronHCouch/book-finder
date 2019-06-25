@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { googleBooksAPIUtil } from '../util/google_books_api_util';
+import { googleBooksAPIUtil } from '../util/googleBooksAPIUtil';
 import BookList from './BookList';
 import SearchForm from './SearchForm';
 import Loading from './Loading';
@@ -42,7 +42,7 @@ class FilterableBookTable extends Component {
   }
 
   processAPIResult(result) {
-    const errorRegex = new RegExp('5..');
+    const errorRegex = new RegExp('[45]..');
     this.setState( { loading: false });
 
     if (result && !errorRegex.test(result)) {
