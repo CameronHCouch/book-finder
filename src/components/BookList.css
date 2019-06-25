@@ -2,6 +2,17 @@ ul, li {
   list-style: none;
   color: #17191e;
   padding: 0px;
+  font-size: calc(10px + 1vmin);
+}
+
+a {
+  color: #226599;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #553788;
 }
 
 span {
