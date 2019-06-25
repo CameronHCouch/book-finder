@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { googleBooksAPIUtil } from '../util/googleBooksAPIUtil';
-import BookList from './BookList';
-import SearchForm from './SearchForm';
-import Loading from './Loading';
-import Error from './Error';
+import { googleBooksAPIUtil } from '../../util/googleBooksAPIUtil';
+import BookList from '../BookList/BookList';
+import SearchForm from '../SearchForm/SearchForm';
+import Loading from '../Loading/Loading';
+import Error from '../Error/Error';
 import './FilterableBookTable.css';
 
 class FilterableBookTable extends Component {

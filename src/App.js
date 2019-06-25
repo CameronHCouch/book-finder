@@ -1,5 +1,5 @@
 import React from 'react';
-import FilterableBookTable from './components/FilterableBookTable'
+import FilterableBookTable from './components/FilterableBookTable/FilterableBookTable';
 import bookImage from './books.png';
 import './App.css';
 
