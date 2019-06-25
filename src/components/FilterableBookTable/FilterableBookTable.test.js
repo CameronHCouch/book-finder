@@ -18,14 +18,14 @@ describe('FilterableBookTable', () => {
     let wrapper = mount(<FilterableBookTable />);
     wrapper.setState({query: 'Harry Potter'});
     await wrapper.instance().handleSubmit({preventDefault: () => {}});
-    expect(wrapper.state('books').length).toEqual(2)
+    expect(wrapper.state('books').length).toEqual(2);
   })
 
   it('given an empty search query, it updates component\'s error state instead of calling API', () => {
     let wrapper = mount(<FilterableBookTable />);
-    expect(wrapper.state('error')).toBe('');
+    expect(wrapper.state('error')).toBeFalsy();
     wrapper.instance().handleSubmit({preventDefault: () => {}});
-    expect(wrapper.state('error')).toBe('📚 Your search must be at least one character long 📚');
+    expect(wrapper.state('error')).toBeTruthy();
     expect(wrapper.state('books').length).toEqual(0);
   })
 })

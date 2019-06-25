@@ -18,6 +18,6 @@ describe('BookListItem', () => {
       publisher= { BOOK.publisher }
       thumbnail= { BOOK.thumbnail }
       infoLink= { BOOK.infoLink } 
-      />)
+      />);
   });
 })

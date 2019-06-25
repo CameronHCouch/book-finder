@@ -37,7 +37,7 @@ class FilterableBookTable extends Component {
           this.processAPIResult(result);
         });
     } else {
-      this.setState( {error: '📚 Your search must be at least one character long 📚'});
+      this.setState({ error: '📚 Your search must be at least one character long 📚' });
     }
   }
 
@@ -72,7 +72,7 @@ class FilterableBookTable extends Component {
 
   render() {
     return (
-      <div className="FilterableBookTable">
+      <div className='FilterableBookTable'>
         <SearchForm
           query= { this.state.query }
           maxResults= { this.state.maxResults }

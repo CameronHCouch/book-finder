@@ -7,7 +7,7 @@ function BookList(props) {
   const bookList = props.books;
   const bookListComponents = bookList.map((book, idx) => {
     return (
-      <li key= { idx} >
+      <li key= { idx} className='BookListItem-wrapper'>
         <BookListItem
           title= { book.title }
           authors= { book.authors }
@@ -20,8 +20,8 @@ function BookList(props) {
   )
     
     return (
-      <div className="BookList">
-        <ul className="BookList-outer">
+      <div className='BookList'>
+        <ul className='BookList-outer'>
           { bookListComponents }
         </ul>
       </div>

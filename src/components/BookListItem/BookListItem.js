@@ -3,7 +3,7 @@ import '../BookList/BookList.css';
 
 function BookListItem(props) {
   function spreadAuthors(){
-    if (Array.isArray(props.authors) && props.authors.length > 1){
+    if (Array.isArray(props.authors) && props.authors.length > 1) {
       return props.authors.join(', ');
     } else {
       return props.authors;
@@ -11,8 +11,8 @@ function BookListItem(props) {
   }
 
     return (
-      <div className="BookListItem">
-        <ul className="BookListItem-list">
+      <div className='BookListItem'>
+        <ul className='BookListItem-list'>
           <li><a href={ props.infoLink } target='_blank' rel='noopener noreferrer'> { props.title }</a></li>
           <li><span>{props.authors.length > 1 ? 'Authors' : 'Author'}:</span> { spreadAuthors() }</li>
           <li><span>Publisher:</span> { props.publisher }</li>
