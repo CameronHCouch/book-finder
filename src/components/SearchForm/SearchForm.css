@@ -1,7 +1,11 @@
+.SearchForm-wrapper {
+  padding-top: 5px;
+}
+
 form {
   display: flex;
   flex-direction: column;
-  width: 60vmin;
+  width: 60vw;
   margin: auto;
   color: #17191e;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -14,11 +18,11 @@ form {
 
 input[type=text] {
   height: 8vh;
-  width: 50vmin;
+  width: 50vw;
   align-self: center;
   font-size: calc(16px + 1vmin);
   text-align: left;
-  padding-left: 15px;
+  padding-left: 8px;
 }
 
 .formOptions {
@@ -60,14 +64,14 @@ input[type=submit]:active {
 
 @media only screen and (max-width: 500px) {
   input[type=text] {
-    font-size: calc(10px + 0.5vmin);
+    font-size: calc(10px + 0.4vmin);
   }
 
   input[type=text]:focus {
     font-size: calc(16px + 1vmin);
   }
 }
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 375px) {
   input[type=text] {
     font-size: calc(8px + 0.5vmin);
   }
