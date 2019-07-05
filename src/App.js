@@ -1,7 +1,8 @@
 import React from 'react';
 import FilterableBookTable from './components/FilterableBookTable/FilterableBookTable';
-import bookImage from './books.png';
 import './App.css';
+
+const bookImage = process.env.PUBLIC_URL + '/books.png';
 
 function App() {
     return (
