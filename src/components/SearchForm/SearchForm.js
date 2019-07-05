@@ -23,6 +23,20 @@ class SearchForm extends Component {
   }
 
   render() {
+
+    const maxResultsDropdown = () => {
+      const optionList = [];
+      let value = 10;
+      while (value <= 40) {
+        optionList.push(<option value={value} key={value}>{value}</option>);
+        value += 5;
+      }
+      return (
+        <select name='maxResults' onChange = { this.handleChange }>
+          { optionList }
+        </select>
+      );
+    }
     return (
       <div className='SearchForm-wrapper'>
         <form onSubmit= { this.handleSubmit } autoComplete='off'>
@@ -40,15 +54,7 @@ class SearchForm extends Component {
           <div className='formOptions'>
             <label htmlFor='maxResults'>
               Max Num Results
-              <select name='maxResults' onChange = { this.handleChange }>
-                <option value='10' defaultValue>10</option>
-                <option value='15'>15</option>
-                <option value='20'>20</option>
-                <option value='25'>25</option>
-                <option value='30'>30</option>
-                <option value='35'>35</option>
-                <option value='40'>40</option>
-              </select>
+              { maxResultsDropdown() }
             </label>
             <label htmlFor='familyFriendly'>
               Allow mature results?
